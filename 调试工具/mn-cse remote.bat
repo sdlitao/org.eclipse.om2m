@@ -1,0 +1,1 @@
+java -jar -Xdebug -Xrunjdwp:transport=dt_socket,server=y,address="8000" -ea -Declipse.ignoreApp=true -Dosgi.clean=true -Ddebug=true plugins/org.eclipse.equinox.launcher_1.3.0.v20140415-2008.jar -console -noExit
