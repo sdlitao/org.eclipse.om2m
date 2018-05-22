@@ -32,30 +32,66 @@ import javax.persistence.MappedSuperclass;
 import org.eclipse.om2m.commons.constants.ShortName;
 
 /**
- * Representation of the Generic Resource to be extended by
- * others entities.
+ * Representation of the Generic Resource to be extended by others entities.
  *
  */
 @MappedSuperclass
 public class ResourceEntity {
 
 	@Id
-	@Column(name=ShortName.RESOURCE_ID)
+	@Column(name = ShortName.RESOURCE_ID)
 	protected String resourceID;
 	@Column(name = ShortName.RESOURCE_TYPE)
 	protected BigInteger resourceType;
-	@Column(name=ShortName.PARENT_ID)
+	@Column(name = ShortName.PARENT_ID)
 	protected String parentID;
-	@Column(name=ShortName.CREATION_TIME)
+	@Column(name = ShortName.CREATION_TIME)
 	protected String creationTime;
-	@Column(name=ShortName.LAST_MODIFIED_TIME)
+	@Column(name = ShortName.LAST_MODIFIED_TIME)
 	protected String lastModifiedTime;
 	@ManyToMany(targetEntity = LabelEntity.class, fetch = FetchType.LAZY)
 	protected List<LabelEntity> labelsEntities;
+	// 标识List -by litao
+	@Column(name = ShortName.TANGIBLEID)
+	protected List<String> tid;
 	
-	@Column(name=ShortName.RESOURCE_NAME)
+	public List<String> getTid() {
+		if(this.tid == null) {
+			this.tid = new ArrayList<String>();
+		}
+		return tid;
+	}
+
+	public void setTid(List<String> tid) {
+		this.tid = tid;
+	}
+	// 标识类型List -by litao
+	@Column(name = ShortName.IDTYPE)
+	protected List<String> idType;
+
+	public List<String> getIdType() {
+		if(this.idType == null) {
+			idType = new ArrayList<String>();
+		}
+		return idType;
+	}
+
+	public void setIdType(List<String> idType) {
+		this.idType = idType;
+	}
+	// 标识url -by litao
+	@Column(name = ShortName.IDURL)
+	protected String idUrl;
+	public String getIdUrl() {
+		return idUrl;
+	}
+
+	public void setIdUrl(String idUrl) {
+		this.idUrl = idUrl;
+	}
+	@Column(name = ShortName.RESOURCE_NAME)
 	protected String name;
-	@Column(name="huri")
+	@Column(name = "huri")
 	protected String hierarchicalURI;
 
 	/**
@@ -192,7 +228,8 @@ public class ResourceEntity {
 	}
 
 	/**
-	 * @param hierarchicalURI the hierarchicalURI to set
+	 * @param hierarchicalURI
+	 *            the hierarchicalURI to set
 	 */
 	public void setHierarchicalURI(String hierarchicalURI) {
 		this.hierarchicalURI = hierarchicalURI;
@@ -209,28 +246,29 @@ public class ResourceEntity {
 	}
 
 	/**
-	 * @param labelsEntities the labelsEntities to set
+	 * @param labelsEntities
+	 *            the labelsEntities to set
 	 */
 	public void setLabelsEntities(List<LabelEntity> labelsEntities) {
 		this.labelsEntities = labelsEntities;
 	}
-	
+
 	/**
-	 * @param labelsEntities the labelsEntities to set
+	 * @param labelsEntities
+	 *            the labelsEntities to set
 	 */
 	public void setLabelsEntitiesFromSring(List<String> labelsStrings) {
 		this.getLabelsEntities().clear();
-		for (String s: labelsStrings) {
+		for (String s : labelsStrings) {
 			LabelEntity toAdd = new LabelEntity(s);
-			if(!this.getLabelsEntities().contains(toAdd)){
-				this.getLabelsEntities().add(new LabelEntity(s));				
+			if (!this.getLabelsEntities().contains(toAdd)) {
+				this.getLabelsEntities().add(new LabelEntity(s));
 			}
 		}
 	}
-	
-	public void setResourceType(int value){
+
+	public void setResourceType(int value) {
 		this.resourceType = BigInteger.valueOf(value);
 	}
-	
 
 }

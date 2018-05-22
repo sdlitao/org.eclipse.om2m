@@ -182,6 +182,30 @@ public class ContainerController extends Controller {
 
 		ControllerUtil.CreateUtil.fillEntityFromAnnounceableResource(container, containerEntity);		
 
+		//标识id by-litao
+		if(!container.getTid().isEmpty()) {
+			containerEntity.setTid(container.getTid());
+			
+		}
+		
+		//标识类型
+		if(!container.getIdType().isEmpty()) {
+			containerEntity.setIdType(container.getIdType());
+		}
+		
+		//标识id或者标识类型都为空时，标识url必为空，有一个不为空是，必不为空
+		if(container.getIdType().isEmpty() && container.getTid().isEmpty()) {
+			if(container.getIdUrl() != null) {
+				throw new BadRequestException("Id Url is forced to be empty");
+			}
+		}else {
+			if(container.getIdUrl() == null) {
+				throw new BadRequestException("Id Url is Mandatory");
+			}else {
+				containerEntity.setIdUrl(container.getIdUrl());
+			}
+		}
+		
 		// creator					O
 		if (container.getCreator() != null) {
 			containerEntity.setCreator(container.getCreator());

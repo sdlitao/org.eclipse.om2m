@@ -122,6 +122,12 @@ public class ShortName {
 	public static final String RESOURCE_NAME = "rn";
 	/** Short name for Labels attribute */
 	public static final String LABELS = "lbl";
+	/** Short name for tangibleID -by litao */
+	public static final String TANGIBLEID = "ti";
+	/** Short name for IDtype -by litao */
+	public static final String IDTYPE = "it";
+	/** Short name for IDurl -by litao */
+	public static final String IDURL = "iu";
 	/** Short name for ExpirationTime attribute */
 	public static final String EXPIRATION_TIME = "et";
 	/** Short name for AnnounceTo attribute */

@@ -95,6 +95,45 @@ public class Resource {
 	@XmlList
 	@XmlElement(name=ShortName.LABELS, required=false, namespace="")
 	protected List<String> labels;
+	//标识list -by litao
+	@XmlList
+	@XmlElement(name=ShortName.TANGIBLEID,required=false,namespace="")
+	protected List<String> tid;
+	
+	public List<String> getTid() {
+		if(tid == null) {
+			tid = new ArrayList<String>();
+		}
+		return tid;
+	}
+
+	public void setTid(List<String> tid) {
+		this.tid = tid;
+	}
+	//标识类型list -by litao
+	@XmlList
+	@XmlElement(name = ShortName.IDTYPE,required=false,namespace="")
+	protected List<String> idType;
+	public List<String> getIdType() {
+		if(this.idType == null) {
+			idType = new ArrayList<String>();
+		}
+		return idType;
+	}
+
+	public void setIdType(List<String> idType) {
+		this.idType = idType;
+	}
+	//标识url -by litao
+	@XmlElement(name = ShortName.IDURL,required=false,namespace="")
+	protected String idUrl;
+	public String getIdUrl() {
+		return idUrl;
+	}
+
+	public void setIdUrl(String idUrl) {
+		this.idUrl = idUrl;
+	}
 	@XmlAttribute(name = ShortName.RESOURCE_NAME, required = true, namespace="")
 	@XmlJavaTypeAdapter(CollapsedStringAdapter.class)
 	@XmlSchemaType(name = "token")

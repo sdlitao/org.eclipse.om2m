@@ -56,6 +56,13 @@ public abstract class EntityMapper<E extends ResourceEntity, R extends Resource>
 		resource.setParentID(entity.getParentID());
 		resource.setResourceID(entity.getResourceID());
 		resource.setResourceType(entity.getResourceType());
+		if(!entity.getTid().isEmpty()) {// by litao
+			resource.setTid(entity.getTid());
+		}
+		if(!entity.getIdType().isEmpty()) {
+			resource.setIdType(entity.getIdType());
+		}
+		resource.setIdUrl(entity.getIdUrl());
 		for (LabelEntity lbl : entity.getLabelsEntities()) {
 			resource.getLabels().add(lbl.getLabel());
 		}
